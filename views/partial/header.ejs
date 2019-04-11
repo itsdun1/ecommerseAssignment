@@ -58,7 +58,7 @@
                         <span class="icon-bar"></span>                        
                       </button>
             
-            <a class="navbar-brand" href="/eResume" >MyeResume</a>
+            <a class="navbar-brand" href="/home" >Ecommerse</a>
         </div>
         <div class="collapse navbar-collapse" id="myNavbar">
             <ul class="nav navbar-nav navbar-right">
@@ -73,7 +73,9 @@
                         <% var a = "/profile/" +  currentUser._id %>
                            <li><a href= <%= a %> > MyCart</a> </li>
                            <li><a href= "/home" > home</a> </li>
+                           <li><a href="/addproducts">AddYourProducts</a></li>
                        <li> <a href="#">Logged in as <%= currentUser.username %></a></li>
+
                            <li><a href="/logout">Log-out</a></li>
                            
                           <% } %>

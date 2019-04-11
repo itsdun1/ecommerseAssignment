@@ -30,15 +30,17 @@
 
             <a href = "#" >
                 <% var a="/api/images/" + data[i].name %>
+                
                 <img src = "<%=a %>" style="height: 225px" alt = "Generic placeholder thumbnail">
              </a>
              <div class="btn-group">
                 <form action="/viewpro"  method="POST">
-                    <button type="submit" class="btn btn-primary " name="name" value="<%= data[i].name %>" >View </button>
+                    <button type="submit" class="btn btn-primary " name="name" value="<%= data[i].name %>" ><%= data[i] %></button>
                     </form>
+                    <div style="height:1px;font-size:1px;">&nbsp;</div>
 
                     <form action="/addpro"  method="POST">
-                        <button type="submit" class="btn btn-warning " name="name" value="<%= data[i].name%>" >View </button>
+                        <button type="submit" class="btn btn-warning " name="name" value="<%= data[i].name%>" > Add to Cart </button>
                         </form>
                     </div>     
                      
