@@ -1,0 +1,107 @@
+<!DOCTYPE html>
+<html>
+<head>
+	<title>MyeResume</title>
+	<!--<link rel="stylesheet" href="https://stackpath.bootstrapcdn.com/bootstrap/4.1.1/css/bootstrap.min.css">-->
+	<!-- <link rel="stylesheet" type="text/css" href="bootstrap.min.css"> -->
+	<link rel="stylesheet" href="//maxcdn.bootstrapcdn.com/bootstrap/3.3.7/css/bootstrap.min.css" integrity="sha384-BVYiiSIFeK1dGmJRAkycuHAHRg32OmUcww7on3RYdg4Va+PmSTsz/K68vbdEjh4u" crossorigin="anonymous">
+    <link rel="stylesheet" type="text/css" href="/css/camp12.css">
+    <!-- <link rel="stylesheet" type="text/css" href="/stylesheet/bootstrap.css">
+    <link rel="stylesheet" type="text/css" href="/stylesheet/font-awesome.css">
+    <link rel="stylesheet" type="text/css" href="/stylesheet/lightbox.css">
+    <link rel="stylesheet" type="text/css" href="/stylesheet/nav.css">
+    <link rel="stylesheet" type="text/css" href="/stylesheet/style.css"> -->
+    <style type="text/css">
+        .h
+        {
+            text-align: center;
+            color:white;
+        }
+        .foot
+        {
+            background-color: #222;
+            border-color: #080808;
+
+        }
+        @media only screen and (min-width: 767px) and (max-width: 991px){
+            .ak{
+                float: left;
+            }
+            .ab{
+                float: right;
+            }
+            .amd{
+                margin-left: 100px;
+            }
+            .ad{
+                margin-right: 100px;
+            }
+        }
+    
+    
+    </style>
+
+
+    <script src="https://ajax.googleapis.com/ajax/libs/jquery/3.3.1/jquery.min.js"></script>
+    <script src="https://maxcdn.bootstrapcdn.com/bootstrap/3.4.0/js/bootstrap.min.js"></script>
+</head>
+
+<body>
+	
+	
+	<nav class="nav navbar-inverse">
+    <div class="container-fluid">
+        <div class="navbar-header">
+                <button type="button" class="navbar-toggle" data-toggle="collapse" data-target="#myNavbar">
+                        <span class="icon-bar"></span>
+                        <span class="icon-bar"></span>
+                        <span class="icon-bar"></span>                        
+                      </button>
+            
+            <a class="navbar-brand" href="/eResume" >MyeResume</a>
+        </div>
+        <div class="collapse navbar-collapse" id="myNavbar">
+            <ul class="nav navbar-nav navbar-right">
+
+
+               
+                   
+                <%    if(!currentUser){ %>
+                    <li id="login"><a href="/login"> Login</a></li>
+                       <li id="singup"><a href="/register">Sign-Up</a></li>
+                       <% } else { %>
+                        <% var a = "/profile/" +  currentUser._id %>
+                           <li><a href= <%= a %> > MyProfile</a> </li>
+                       <li> <a href="#">Logged in as <%= currentUser.username %></a></li>
+                           <li><a href="/logout">Log-out</a></li>
+                           
+                          <% } %>
+                     
+
+
+
+
+
+             
+                       
+                    
+            </ul>
+        </div>
+
+
+        
+        
+        
+        
+    </div>
+    
+    
+    
+    
+    
+    
+    
+</nav>
+
+    
+    </div>
