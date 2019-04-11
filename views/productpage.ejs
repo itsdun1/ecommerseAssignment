@@ -1,0 +1,104 @@
+
+<% include partial/header.ejs %>
+
+
+
+
+
+
+<div class="container">
+
+
+<div style="text-align: center ; margin-top: 20px; margin-bottom: 40px"  >
+
+    <p><h1> Welcome <%= data.username %></h1></p>
+   
+
+</div>
+
+
+<!--<h1> this is also connacted</h1>-->
+<div class="row text-center" style="display:flex ; flex-wrap:wrap">
+
+       
+        <div class="col-md-3 col-sm-6">
+        <div class="thumbnail ">   
+        
+                
+         <p>    
+
+            <a href = "#" >
+                <% var a="/api/images/" + data.name %>
+                <img src = "<%=a %>" style="height: 400px  " alt = "Generic placeholder thumbnail">
+             </a>
+             <div class="btn-group">
+               
+
+                    <form action="/addpro"  method="POST">
+                        <button type="submit" class="btn btn-warning " name="name" value="<%= data.name%>" >add to cart </button>
+                        </form>
+                    </div>     
+                     
+                   
+         </p>
+
+         <div class="caption">
+                <%= data.name %>
+            </div>
+       
+         </div>
+         </div>
+
+         <div class="col-md-3 col-sm-6">
+            <p>
+                <h3>
+                    Price:
+                </h3>
+                <h4>
+                    <%= data.price %>
+                </h4>
+                <h3>
+                    INFO:
+                </h3>
+            </p>
+            <div>
+                
+                <%= data.info %>
+
+            </div>
+
+
+         </div>
+      
+
+
+        
+        
+        </div>
+
+     
+ 
+    </div>
+
+
+
+    
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+    
+

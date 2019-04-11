@@ -3,7 +3,7 @@ var product = new mongoose.Schema({
     image:Buffer,
     name:String,
     info:String,
-    price:number,
+    price:Number,
     username:String
 
 })
