@@ -1,0 +1,64 @@
+<% include partial/header.ejs %>
+
+
+
+<div class="container">
+    
+    <br>
+    <br>
+       
+        <div style="width:30%;  margin:25px auto; ">
+                
+            <h2>    Your Products are</h2>
+            <ul class="list-group"></ul>
+            <% var a = 0 %>
+            <% for(var i = 0;i< data.name.length;i++){ %>
+                
+
+                   <h3> <li class="list-group-otem"> <%=data.name[i] %>      ₹<%= data.price[i] %></li></h3>
+                   <% a = a + data.price[i] %>
+                    <% } %>
+                    <% a = a*100 %>
+                </ul>
+
+                <h2> Total Price is ₹<%= a/100 %></h2>
+                <form action="/charge" method="POST" >
+                    <script
+
+                            src="https://checkout.stripe.com/checkout.js"
+                            class="stripe-button"
+                            data-key="pk_test_tAMa9zdK9PleT5Z4WJUlXiGg00O2PA6Qer"
+                            data-amount = '<%= a %>'
+                            data-name = 'payment'
+                            data-description = "payment gateway"
+                            data-locale ="auto"
+                            data-currency = "inr"
+                    ></script>
+                    
+                    <input type="hidden" name="charge" value=<%=a %>>
+
+                    Pay Price
+                    
+                </form>
+
+                <h2> Remove product from cart</h2>
+
+                <form action="/remove" method="POST">
+                        <select class="form-control" id="sel1" name="name">
+                              <% for(var i=0 ;i< data.name.length ;i ++){ %>
+                                <option value="<%=data.name[i] %>"> <%= data.name[i] %></option>
+                                <% } %>
+
+                                </select>
+                                <br>
+                                <button class="btn btn-success"> Submit</button>
+
+                </form>
+
+
+
+
+                
+
+    </div>
+    </div>

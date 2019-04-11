@@ -10,10 +10,16 @@ var bodyParser = require("body-parser")
 var request = require('request');
 var user = require("./models/user")
 var sharp = require("sharp")
+var cart = require("./models/cart")
 var product = require("./models/productinfo")
+app.use(bodyParser.json()); 
 app.use(bodyParser.urlencoded({extended:true}));
 app.use(express.static(__dirname + "/public"));
 var port = process.env.PORT  || 3000
+var pubkey = 'pk_test_tAMa9zdK9PleT5Z4WJUlXiGg00O2PA6Qer'
+var secret = 'sk_test_q417jT7WuquKei9Mk0kKlHd2009895jrn1'
+
+const stripe = require("stripe")(secret)
 
 
 app.use(require("express-session")({
@@ -224,7 +230,46 @@ app.post("/viewpro",(req,res)=>{
 
 })
 
+app.post("/addpro",isLoggedIn,(req,res)=>{
 
+    var a = req.body.name;
+
+    product.find({name:a}).then((data)=>{
+
+        if(data){
+            console.log(data)
+        }
+        cart.findOneAndUpdate({username:res.locals.currentUser.username},
+        {$push :{name:data[0].name,
+                price:data[0].price},
+        },{upsert:true, returnNewDocument : true
+        }).then((data)=>{
+            if(data){
+                console.log(data)
+            }
+        }).catch((e)=>{
+            console.log(e);
+        })
+
+        res.redirect("/home")
+
+
+    })
+
+
+
+})
+
+app.get("/profile/:id",isLoggedIn,(req,res)=>{
+
+    cart.find({username:res.locals.currentUser.username}).then((data)=>{
+
+        console.log(data[0])
+        res.render("cart.ejs",{data:data[0]})
+    })
+    
+
+})
 
 
 function isLoggedIn(req ,res ,next)
@@ -239,12 +284,68 @@ function isLoggedIn(req ,res ,next)
 
 
 
+app.post("/charge",isLoggedIn,(req,res)=>{
+
+    var token = req.body.stripeToken;
+    var chargeA = req.body.charge
+    var charge = stripe.charges.create({
+            amount:chargeA,
+            currency:"inr",
+            source:token
+    },function(err,ch){
+
+        if(err){
+            if(err.type=== "StripeCardError")
+            {
+                console.log("card declined")
+                alert("card declined")
+                res.redirect("/home")
+            }
+            
+        }
+    });
+    res.redirect("/deduct")
+})
+
+app.get("/deduct",isLoggedIn,(req,res)=>{
+
+    cart.findOneAndUpdate({username:res.locals.currentUser.username},
+    {$set:{name:[],price:[]}}).then((data)=>{
+
+        res.redirect("/home")
+    })
+
+})
+app.get("/logout",(req,res)=>{
+    req.logout();
+   
+    res.redirect("/home")
+})
 
 
 
+app.post("/remove",isLoggedIn,(req,res)=>{
 
+        product.find({name:req.body.name}).then((data)=>{
 
+            if(data){
 
+                console.log(data)
+                var p = data[0].price;
+                cart.findOneAndUpdate({username:res.locals.currentUser.username},
+                    {$pull:{name:req.body.name,
+                    price:p}}).then((data)=>{
+                        res.redirect("/home")
+                    }).catch((e)=>{
+                        console.log(e)
+                    })
+            
+            }
+
+        })
+
+        
+})
 
 
 
