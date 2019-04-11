@@ -349,7 +349,7 @@ app.post("/remove",isLoggedIn,(req,res)=>{
 
 
 
-app.listen( process.env.PORT,()=>
+app.listen(port ,()=>
 {
     console.log("server has started");
 })

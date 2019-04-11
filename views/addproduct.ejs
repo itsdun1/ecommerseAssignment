@@ -11,20 +11,20 @@
     <div style="width:30%;  margin:25px auto;">
 <form  action="/addproducts" method="POST" enctype="multipart/form-data" >
     <div class="form-group">
-        <input type="text" placeholder="name" name="dataname" class="form-control">
+        <input type="text" placeholder="name" name="name" class="form-control" required>
         
     </div>
 <div class="form-group">
-    <input type="number" placeholder="price" name="price" class="form-control">
+    <input type="number" placeholder="price" name="price" class="form-control" required>
     
 </div>
 <div class="form-group">
-    <input type="text" placeholder="info about product" name="info" class="form-control">
+    <input type="text" placeholder="info about product" name="info" class="form-control"required> 
     
 </div>
 
 <div class="form-group">
-    <input class="long" type='file' name='proimage'accept="image/*" required />
+    <input class="long" type='file' name='proimage' accept="image/*" required />
     
 </div>
 
