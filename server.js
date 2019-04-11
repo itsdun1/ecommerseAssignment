@@ -73,12 +73,24 @@ app.post("/register",(req,res)=>{
         }
         passport.authenticate("local")(req,res,function(){
           
-            
+            x = []
+            obj = {}
+            obj.username = req.body.username
+            obj.name = []
+            obj.price = []
+
+            x.push(obj)
+            cart.insertMany(x).then((data)=>{
+                if(data)
+                {
+                    res.redirect("/home");
+           
+                }
+            })
            
            
                     
-            res.redirect("/home");
-           
+          
             
             
         })
@@ -335,7 +347,7 @@ app.post("/remove",isLoggedIn,(req,res)=>{
                 cart.findOneAndUpdate({username:res.locals.currentUser.username},
                     {$pull:{name:req.body.name,
                     price:p}}).then((data)=>{
-                        res.redirect("/home")
+                        res.redirect("/profile/"+ res.locals.currentUser._id);
                     }).catch((e)=>{
                         console.log(e)
                     })
