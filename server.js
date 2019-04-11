@@ -52,7 +52,7 @@ app.use(function(req,res,next){
 
 
 app.get("/",(request,res)=>{
-    res.render("a.ejs");
+    res.redirect("/home")
 
 })
 
